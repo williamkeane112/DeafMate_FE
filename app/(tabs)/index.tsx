@@ -1,70 +1,45 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, View, Text, StyleSheet } from "react-native";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { styled } from "nativewind";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
+  const StyledText = styled(Text);
+  const StyledView = styled(View);
+  const StyledImage = styled(Image);
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <StyledView className="flex-1 items-center bg-Main">
+      {/* hero img */}
+      <StyledView className="bg-white p-28  rounded-full  flex items-center mt-[37%]" style={styles.shadow}>
+        <StyledImage className="w-48 h-48 absolute mt-[31px]" source={require("../../assets/img/firstScreenImg.png")} />
+      </StyledView>
+
+      {/* teks and logo deafmate */}
+      <StyledView className="flex items-center">
+        <StyledImage className="flex mt-8" source={require("../../assets/img/DeafMate.png")} />
+        <StyledText className="text-center mx-14 mt-5 text-Main font-medium text-[17px]">Komunikasi Tanpa Batas. menyatukan jiwa dalam bahasa universal dengan makna yang mendalam.</StyledText>
+      </StyledView>
+
+      {/* button */}
+      <StyledView className="flex items-center mt-48">
+        <Link href="auth/register" className="py-2 px-28  rounded-lg bg-ButtonBG">
+          <StyledText className="text-white text-xl">Buat akun</StyledText>
+        </Link>
+        <Link href="auth/login" className="mt-6">
+          <StyledText className="text-[#2573D5] text-lg font-semibold">Masuk ke akun</StyledText>
+        </Link>
+      </StyledView>
+    </StyledView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.6,
+    shadowRadius: 10,
+    elevation: 15,
   },
 });
