@@ -10,6 +10,9 @@ module.exports = {
       textColor: {
         Main: "#29304D",
       },
+      fontFamily: {
+        pRegular: ["Poppins-Regular"],
+      }
     },
   },
   plugins: [],
