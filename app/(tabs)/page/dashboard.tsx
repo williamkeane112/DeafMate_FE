@@ -28,7 +28,7 @@ const dashboard = () => {
       const token = await SecureStore.getItemAsync("userToken");
       if (token) {
         setToken(token);
-        const result = await axios.post("http://192.168.135.169:3000/user/userInfo", { token: token });
+        const result = await axios.post("http://192.168.3.169:3000/user/userInfo", { token: token });
         setUserName(result.data[0].payload[0].nama);
       } else {
         router.navigate("/auth/login");
@@ -108,7 +108,7 @@ const dashboard = () => {
               </StyledView>
               <StyledView className="mr-5">
                 <FontAwesome5 name="hand-paper" size={26} color="#29304D" />
-              </StyledView> 
+              </StyledView>
             </StyledView>
 
             {/* text to voice box */}

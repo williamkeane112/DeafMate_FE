@@ -66,7 +66,7 @@ const Register = () => {
   const handleRegister = async () => {
     try {
       await validationSchema.validate(register, { abortEarly: false });
-      const result = await axios.post("http://192.168.135.169:3000/user/register", { email, nama, password, confirmPassword });
+      const result = await axios.post("http://192.168.3.169:3000/user/register", { email, nama, password, confirmPassword });
       if (result) {
         router.push("/auth/login");
       }

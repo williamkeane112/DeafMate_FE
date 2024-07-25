@@ -19,7 +19,7 @@ const belajar = () => {
   const [data, setData] = useState(null);
   const getDataById = async () => {
     try {
-      const datas = await axios.get(`http://192.168.135.169:3000/module/getDataById/${belajar}`);
+      const datas = await axios.get(`http://192.168.3.169:3000/module/getDataById/${belajar}`);
       setData(datas.data.payload);
     } catch (err) {
       console.log(err);

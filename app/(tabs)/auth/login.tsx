@@ -58,11 +58,13 @@ const login = () => {
   const login = async () => {
     try {
       await validation.validate(userInputDataLogin, { abortEarly: false });
-      const result = await axios.post("http://192.168.135.169:3000/user/login", { email, password });
+
+      const result = await axios.post("http://192.168.3.169:3000/user/login", { email, password });
+
       const token = result.data[0].payload.token;
 
       await SecureStore.setItemAsync("userToken", token);
-      router.navigate("/page/dashboard");
+      router.push("/page/dashboard");
     } catch (err: any) {
       if (err.response && err.response.data) {
         SetTextError({ message: err.response.data[0].message });

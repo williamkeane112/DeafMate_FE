@@ -20,7 +20,7 @@ const Listmodul = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const datas = await axios.post("http://192.168.135.169:3000/module/getData", { isi });
+        const datas = await axios.post("http://192.168.3.169:3000/module/getData", { isi });
         setData(datas.data[0].payload);
       } catch (err) {
         console.log("error goblok: " + err);

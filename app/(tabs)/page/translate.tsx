@@ -31,7 +31,7 @@ const translate = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // hasil translate
-  const [textTranslate, setTextTranslate] = useState('');
+  const [textTranslate, setTextTranslate] = useState("");
 
   if (!permission) {
     return <View />;
@@ -49,9 +49,8 @@ const translate = () => {
   // get capture
 
   const takePicture = async () => {
-    console.log("Sending image to server...");
     if (cameraRef.current) {
-      const photo = await cameraRef.current.takePictureAsync();
+      const photo = await cameraRef.current.takePictureAsync({ quality: 0.5, base64: true, exif: false });
       if (photo && photo.uri) {
         const base64 = await FileSystem.readAsStringAsync(photo.uri, { encoding: "base64" });
         translateSign(base64);
@@ -65,7 +64,7 @@ const translate = () => {
   const translateSign = async (base64Image: any) => {
     try {
       const response = await axios.post(
-        "http://192.168.135.169:5000/",
+        "http://192.168.3.169:5000/",
         {
           image: base64Image,
         },
@@ -94,7 +93,7 @@ const translate = () => {
     } else {
       intervalRef.current = setInterval(() => {
         takePicture();
-      }, 2000);
+      }, 5000);
     }
     setCapturing(!capturing);
   };

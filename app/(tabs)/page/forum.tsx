@@ -21,7 +21,7 @@ const forum = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://192.168.135.169:3000/forum/getData");
+        const response = await axios.get("http://192.168.3.169:3000/forum/getData");
         setData(response.data[0].payload);
       } catch (err) {
         console.log(err);
@@ -37,6 +37,7 @@ const forum = () => {
     }
     return text;
   };
+
   return (
     <StyledView className="flex-1 bg-Main">
       <StyledView className="mx-5 mt-16">
@@ -54,7 +55,7 @@ const forum = () => {
             <StyledText className="text-white font-bold text-lg font-pRegular">Buat Diskusi</StyledText>
             <Ionicons name="chatbox-outline" size={30} color="white" />
           </StyledButton>
-          <StyledButton className="flex-row items-center justify-between bg-white px-3 py-2 w-40 rounded-md" style={styles.shadow}>
+          <StyledButton onPress={() => router.push("/page/dashboard")} className="flex-row items-center justify-between bg-white px-3 py-2 w-40 rounded-md" style={styles.shadow}>
             <StyledText className="text-[#2573D5] font-bold text-lg font-pRegular">Menu utama</StyledText>
             <FontAwesome name="home" size={30} color="#2573D5" />
           </StyledButton>
@@ -75,8 +76,8 @@ const forum = () => {
               <StyledText className="text-[13px]">{batasKata(item.content, 40)}</StyledText>
             </StyledView>
             {/* button liat post */}
-            <StyledButton className="ml-auto px-4 flex-row items-center">
-              <StyledText className="mx-3 font-pRegular text-Main font-bold text-sm">Lihat Postingan</StyledText>
+            <StyledButton onPress={() => router.push(`/forum/${item.id}`)} className="ml-auto px-4 flex-row items-center">
+              <StyledText className="mx-3 font-pRegular text-Main font-bold text-sm ">Lihat Postingan{item.id}</StyledText>
               <AntDesign name="arrowright" size={24} color="#29304D" />
             </StyledButton>
           </StyledView>
